@@ -18,6 +18,10 @@
 ##
 
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
+
+
+csrf = CSRFProtect()
 
 
 def create_app(test_config=None):
@@ -30,6 +34,8 @@ def create_app(test_config=None):
         app.config.from_json("config.json", silent=True)
     else:
         app.config.from_json(test_config)
+
+    csrf.init_app(app)
 
     @app.route("/")
     def main():

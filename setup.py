@@ -29,7 +29,12 @@ setup(
         "Topic :: Internet",
     ],
     install_requires=[
-        "flask"
+        "Flask-WTF",
+        "Mastodon.py",
+        "beautifulsoup4",
+        "flask",
+        "markovify",
+        "rq",
     ],
     extras_require={
         "docs": [
