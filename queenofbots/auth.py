@@ -17,28 +17,12 @@
 #    along with Inboxen  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-from flask import Flask, reder_template
-from flask_wtf.csrf import CSRFProtect
+from flask import Blueprint
 
 
-csrf = CSRFProtect()
+bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev",
-    )
-
-    if test_config is None:
-        app.config.from_json("config.json", silent=True)
-    else:
-        app.config.from_json(test_config)
-
-    csrf.init_app(app)
-
-    @app.route("/")
-    def index():
-        return render_template("index.html")
-
-    return app
+@bp.route("/register", methods=("GET", "POST"))
+def register():
+    pass
