@@ -27,9 +27,9 @@ def create_app(test_config=None):
     )
 
     if test_config is None:
-        app.config.from_pyfile("config.py", silent=True)
+        app.config.from_json("config.json", silent=True)
     else:
-        app.config.from_pyfile(test_config)
+        app.config.from_json(test_config)
 
     @app.route("/")
     def main():
