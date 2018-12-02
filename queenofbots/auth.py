@@ -26,3 +26,8 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 @bp.route("/register", methods=("GET", "POST"))
 def register():
     pass
+
+
+@bp.route("/callback"):
+def callback():
+    pass

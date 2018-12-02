@@ -16,7 +16,7 @@ setup(
     url="https://github.com/moggers87/queenofbots",
     download_url="https://pypi.org/project/queenofbots/",
     packages=find_packages(),
-    test_suite="exhibition.tests",
+    test_suite="queenofbots.tests",
     license="AGPLv3",
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -32,6 +32,7 @@ setup(
         "Flask-WTF",
         "Mastodon.py",
         "beautifulsoup4",
+        "click",
         "flask",
         "markovify",
         "rq",
@@ -42,5 +43,10 @@ setup(
             "sphinx_rtd_theme",
             "sphinx-click",
         ],
+    },
+    entry_points={
+        "console_scripts": [
+            "queen = queenofbots.command:queen",
+        ]
     },
 )

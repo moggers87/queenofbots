@@ -17,33 +17,22 @@
 #    along with Inboxen  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-from flask import Flask, reder_template
-from flask_wtf.csrf import CSRFProtect
+from redis import Redis
+from rq import Queue
 
 
-csrf = CSRFProtect()
+q = Queue(name="queenofbots", connection=Redis())
 
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev",
-    )
-
-    if test_config is None:
-        app.config.from_json("config.json", silent=True)
-    else:
-        app.config.from_json(test_config)
-
-    csrf.init_app(app)
-
-    @app.route("/")
-    def index():
-        return render_template("index.html")
+def fetch_toots_for_all_users():
+    users = []  # fetch this from redis
+    for user in users:
+        q.enqueue(fetch_toots, user)
 
 
-    @app.route("/status")
-    def status():
-        pass
+def fetch_toots(user):
+    pass
 
-    return app
+
+def send_toot(user):
+    pass
